@@ -1,6 +1,8 @@
+DROP TABLE chicken_feed;
+
 CREATE TABLE chicken_feed
   (
-  feed_id     NUMERIC(4) PRIMARY KEY,
+  feed_id     NUMERIC(4),
   brand       VARCHAR(30),
   type        VARCHAR(20),
   weight      INT,
@@ -9,3 +11,6 @@ CREATE TABLE chicken_feed
   medicated   BOOLEAN,
   life_stage  VARCHAR(20)
   );
+
+  SELECT *
+    FROM chicken_feed;
