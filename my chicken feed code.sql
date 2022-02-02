@@ -18,7 +18,7 @@ CREATE SEQUENCE sq_brand_id
 CREATE TABLE manufacturer
   (
   brand_id  NUMERIC(5) DEFAULT NEXTVAL('sq_brand_id') PRIMARY KEY,
-  name      VARCHAR(30) UNIQUE,
+  name      VARCHAR(30) NOT NULL UNIQUE,
   address   VARCHAR(50),
   city      VARCHAR(30),
   state     CHAR(2),
