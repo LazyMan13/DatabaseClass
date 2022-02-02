@@ -28,7 +28,7 @@ CREATE TABLE manufacturer
 CREATE TABLE chicken_feed
   (
   feed_id     NUMERIC(5) DEFAULT NEXTVAL('sq_feed_id') PRIMARY KEY,
-  brand_id    NUMERIC(5) REFERENCES manufacturer(brand_id),
+  brand_id    NUMERIC(5),
   type        VARCHAR(20),
   weight      INT,
   description TEXT,
@@ -37,7 +37,21 @@ CREATE TABLE chicken_feed
   life_stage  VARCHAR(20)
   );
 
+INSERT INTO manufacturer
+  (name, city)
+VALUES('Oakley','Beebe');
 
+INSERT INTO chicken_feed
+  (brand_id,type,weight)
+VALUES(20000,'Crumbles',25);
 
-  SELECT *
-    FROM chicken_feed;
+SELECT * FROM chicken_feed;
+
+SELECT * FROM manufacturer;
+
+ALTER TABLE chicken_feed
+  ADD CONSTRAINT fk_brand_id FOREIGN KEY (brand_id)
+  REFERENCES manufacturer (brand_id) ON DELETE SET NULL;
+
+DELETE FROM manufacturer
+  WHERE brand_id = 20000;
