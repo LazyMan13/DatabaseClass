@@ -22,7 +22,8 @@ CREATE TABLE manufacturer
   address   VARCHAR(50),
   city      VARCHAR(30),
   state     CHAR(2),
-  zip       NUMERIC(5)
+  zip       NUMERIC(5),
+  CONSTRAINT ck_life_stage CHECK (life_stage IN ('Starter','Laying Hens','All Life Stages'))
   );
 
 CREATE TABLE chicken_feed
@@ -34,12 +35,13 @@ CREATE TABLE chicken_feed
   description TEXT,
   organic     BOOLEAN,
   medicated   BOOLEAN,
-  life_stage  VARCHAR(20)
+  life_stage  VARCHAR(20),
+  CONSTRAINT ck_life_stage CHECK (life_stage IN ('Starter','Laying Hens','All Life Stages'))
   );
 
 INSERT INTO manufacturer
-  (name, city)
-VALUES('Oakley','Beebe');
+  (brand_id, name, city, state)
+VALUES(20000,'Oakley','Beebe','AR');
 
 INSERT INTO chicken_feed
   (brand_id,type,weight)
@@ -55,3 +57,9 @@ ALTER TABLE chicken_feed
 
 DELETE FROM manufacturer
   WHERE brand_id = 20000;
+
+ALTER TABLE manufacturer
+  ADD CONSTRAINT ck_state_abr CHECK (state IN ('AK', 'AL', 'AR', 'AS', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA', 'GU', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MI', 'MN', 'MO', 'MP', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UM', 'UT', 'VA', 'VI', 'VT', 'WA', 'WI', 'WV', 'WY'));
+
+ALTER TABLE chicken_feed
+  ADD CONSTRAINT ck_life_stage CHECK (life_stage IN ('Starter','Laying Hens','All Life Stages'));
