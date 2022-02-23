@@ -65,8 +65,11 @@ INSERT INTO chicken_feed
 VALUES(20000,'Crumbles',25);
   
 CREATE VIEW feed_pricing AS
-  SELECT cf.type, cf.weight, cf.life_stage, m.name producer, d.name seller
-  FROM chicken_feed cf, manufacturer m, dealer d;
+  SELECT cf.type, cf.weight, cf.life_stage, m.name AS producer, d.name AS seller, d.price
+  FROM manufacturer m JOIN chicken_feed cf
+    ON(m.brand_id = cf.brand_id)
+    JOIN dealer d
+    ON(cf.feed_id = d.feed_id);
   
 SELECT * FROM chicken_feed;
 SELECT * FROM manufacturer;
