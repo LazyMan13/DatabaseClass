@@ -63,7 +63,13 @@ VALUES('Oakley','Beebe');
 INSERT INTO chicken_feed
   (brand_id,type,weight)
 VALUES(20000,'Crumbles',25);
-
+  
+CREATE VIEW feed_pricing AS
+  SELECT cf.type, cf.weight, cf.life_stage, m.name producer, d.name seller
+  FROM chicken_feed cf, manufacturer m, dealer d;
+  
 SELECT * FROM chicken_feed;
 SELECT * FROM manufacturer;
 SELECT * FROM dealer;
+
+SELECT * FROM feed_pricing;
