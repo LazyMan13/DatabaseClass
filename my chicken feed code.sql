@@ -63,6 +63,16 @@ VALUES('Oakley','Beebe');
 INSERT INTO chicken_feed
   (brand_id,type,weight)
 VALUES(20000,'Crumbles',25);
+
+INSERT INTO manufacturer
+  (name,address,city,state,zip)
+  VALUES ('co-op','147 HWY 22','Irving','TX',75060),
+         ('Purina Mills','212 E Harvard St','Lubbock','TX',79403);
+
+INSERT INTO chicken_feed
+  (brand_id,type,weight,description,organic,medicated,life_stage)
+  VALUES((SELECT brand_id FROM manufacturer WHERE name LIKE 'co-op'),'crumbles',25,'Contains no animal protein',FALSE,FALSE,'starter'),
+        ((SELECT brand_id FROM manufacturer WHERE name LIKE 'co-op'),'crumbles',50,'Contains no animal protein',FALSE,FALSE,'starter');
   
 CREATE VIEW feed_pricing AS
   SELECT cf.type, cf.weight, cf.life_stage, m.name AS producer, d.name AS seller, d.price
