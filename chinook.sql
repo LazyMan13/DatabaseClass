@@ -69,3 +69,25 @@ SELECT t.name AS "Title Name", g.name AS "Genre Name", '$' ||
   ON (t.genreid = g.genreid)
 ORDER BY "Genre Name";
 
+CREATE TABLE ex1
+  (
+  name VARCHAR(200),
+  genre varchar(120),
+  price numeric(5,2)
+  )
+
+INSERT INTO ex1 (name, genre, price)
+  (SELECT t.name, g.name,
+  CASE
+    WHEN UPPER(g.name) LIKE 'ROCK' THEN TRUNC(t.unitprice * 1.3, 2)
+    WHEN UPPER(g.name) LIKE 'OPERA' THEN TRUNC(t.unitprice * 1.1, 2)
+    WHEN UPPER(g.name) LIKE 'METAL' THEN TRUNC(t.unitprice * 1.25, 2)
+    WHEN UPPER(g.name) LIKE 'BLUES' THEN TRUNC(t.unitprice * 1.5, 2)
+    ELSE TRUNC(t.unitprice, 2)
+  END
+  FROM track t JOIN genre g
+  ON (t.genreid = g.genreid)
+);
+
+SELECT *
+  FROM ex1;
