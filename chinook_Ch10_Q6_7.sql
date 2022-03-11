@@ -15,7 +15,7 @@ SELECT al.title AS "album_title",ar.name AS "artist_name",t.name AS "track_name"
   JOIN MediaType mt ON t.mediatypeid = mt.mediatypeid 
 WHERE
   CASE
-    WHEN LOWER(mt.name) LIKE '%audio%' AND t.unitprice != 0.99 THEN TRUE
-    WHEN LOWER(mt.name) LIKE '%video%' AND t.unitprice != 1.99 THEN TRUE
+    WHEN LOWER(mt.name) LIKE '%audio%' AND t.unitprice <> 0.99 THEN TRUE
+    WHEN LOWER(mt.name) LIKE '%video%' AND t.unitprice <> 1.99 THEN TRUE
   END
 ORDER BY t.trackid;
