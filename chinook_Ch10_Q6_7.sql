@@ -1,8 +1,8 @@
 /*Question 6*/
 SELECT ar.name AS "artist_name",COUNT(*) AS "num_tracks"
     FROM track t
-    INNER JOIN album al ON t.albumid = al.albumid
-    INNER JOIN artist ar ON al.artistid = ar.artistid
+    JOIN album al ON t.albumid = al.albumid
+    JOIN artist ar ON al.artistid = ar.artistid
 GROUP BY "artist_name"
     HAVING COUNT(t.name) > 50 AND NOT LOWER(ar.name) IN ('various artists','the office','lost')
 ORDER BY "num_tracks" DESC, "artist_name";
