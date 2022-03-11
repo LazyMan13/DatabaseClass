@@ -1,5 +1,6 @@
 /*Question 6*/
-SELECT ar.name AS "artist_name",COUNT(*) AS "num_tracks"
+SELECT ar.name AS "artist_name",
+        COUNT(*) AS "num_tracks"
     FROM track t
     JOIN album al ON t.albumid = al.albumid
     JOIN artist ar ON al.artistid = ar.artistid
@@ -8,7 +9,11 @@ GROUP BY "artist_name"
 ORDER BY "num_tracks" DESC, "artist_name";
  
 /*Question 7*/ 
-SELECT al.title AS "album_title",ar.name AS "artist_name",t.name AS "track_name",mt.name AS "media_type",'$'|| t.unitprice AS "unit_price"
+SELECT al.title AS "album_title",
+        ar.name AS "artist_name",
+        t.name AS "track_name",
+        mt.name AS "media_type",
+        '$'|| t.unitprice AS "unit_price"
   FROM Track t 
   JOIN Album al ON t.albumid = al.albumid 
   JOIN Artist ar ON al.artistid = ar.artistid 
