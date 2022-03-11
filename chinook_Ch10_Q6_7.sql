@@ -1,5 +1,5 @@
 /*Question 6*/
-SELECT ar.name AS "artist_name",COUNT(t.name) AS "num_tracks"
+SELECT ar.name AS "artist_name",COUNT(*) AS "num_tracks"
     FROM track t
     INNER JOIN album al ON t.albumid = al.albumid
     INNER JOIN artist ar ON al.artistid = ar.artistid
