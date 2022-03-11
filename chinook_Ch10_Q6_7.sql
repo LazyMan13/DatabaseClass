@@ -5,7 +5,7 @@ SELECT ar.name AS "artist_name",COUNT(t.name) AS "num_tracks"
     INNER JOIN artist ar ON al.artistid = ar.artistid
 GROUP BY "artist_name"
     HAVING COUNT(t.name) > 50 AND NOT LOWER(ar.name) IN ('various artists','the office','lost')
-ORDER BY "num_tracks", "artist_name";
+ORDER BY "num_tracks" DESC, "artist_name";
  
 /*Question 7*/ 
 SELECT al.title AS "album_title",ar.name AS "artist_name",t.name AS "track_name",mt.name AS "media_type",'$'|| t.unitprice AS "unit_price"
