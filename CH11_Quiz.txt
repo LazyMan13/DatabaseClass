@@ -1,0 +1,37 @@
+/*find the world "of" in lowercase in the name of a track.*/
+SELECT name
+  FROM track
+  WHERE LOWER(name) LIKE '%of %' OR LOWER(name) LIKE '% of%' OR LOWER(name) LIKE '% of %';
+
+/*
+predicates can evalutate to:
+1. TRUE
+2. FALSE
+3. NULL / UNKNOWN
+*/
+
+/*find number of null composers, find number of not null composers*/
+SELECT count(*)
+  FROM track
+  WHERE composer IS NULL;
+
+SELECT count(*)
+   FROM track
+   WHERE composer IS NOT NULL;
+
+
+/*
+LIKE '%uck' uck or duck or stuck "Zero or more"
+LIKE '_uck' duck or puck "one"
+  */
+
+/*
+Difference between "some" and "any" nothing
+  */
+
+/*
+view current date or insert current date?
+  */
+SELECT CURRENT_DATE;
+/*oracle*/
+SELECT CURRENT_DATE FROM DUAL;
