@@ -53,6 +53,7 @@ CREATE TABLE chicken_feed
   name        VARCHAR(30) NOT NULL,
   price       NUMERIC(4,2) CHECK(price BETWEEN 5 AND 50),
   feed_id     NUMERIC(5) REFERENCES chicken_feed (feed_id) ON DELETE SET NULL,
+  first_added DATE,
   CONSTRAINT unq_name_feedid UNIQUE(name, feed_id)
   );
 
@@ -73,7 +74,11 @@ INSERT INTO chicken_feed
   (brand_id,type,weight,description,organic,medicated,life_stage)
   VALUES((SELECT brand_id FROM manufacturer WHERE name LIKE 'co-op'),'crumbles',25,'Contains no animal protein',FALSE,FALSE,'starter'),
         ((SELECT brand_id FROM manufacturer WHERE name LIKE 'co-op'),'crumbles',50,'Contains no animal protein',FALSE,FALSE,'starter');
-  
+
+INSERT INTO dealer
+  (name, price, feed_id, first_added)
+  VALUES ('Walmart', 18.53, 10004, CURRENT_DATE);
+
 CREATE VIEW feed_pricing AS
   SELECT cf.type, cf.weight, cf.life_stage, m.name AS producer, d.name AS seller, d.price
   FROM manufacturer m JOIN chicken_feed cf
